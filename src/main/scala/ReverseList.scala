@@ -1,21 +1,21 @@
-object ReverseList {
-  def revList(myList : List[Int]): List[Int] = {
-    var myNewList : List[Int] = List.empty[Int]
-    var size : Int = myList.size -1
 
-
-    while (size >= 0) {
-      val newVal : Int = myList(size)
-      myNewList = myNewList :+ newVal
-      size -= 1
+import scala.annotation.tailrec
+object ReverseList{
+  @tailrec
+  def reverseList(oldList : List[Int],newList : List[Int]) : List[Int] = {
+    if(oldList.isEmpty){
+      newList
     }
-      myNewList
-
+    else
+      {
+        reverseList(oldList.tail , oldList.head :: newList)
+      }
   }
   def main(args: Array[String]): Unit = {
-    val myList = List(1,2,3,4,5,6)
-    val myNewList : List[Int] = revList(myList)
-    println(myNewList)
+    val List1 = List(1,2,3,4,5)
+    println(reverseList(List1,Nil))
+    val List2 = List(10,11,23,14)
+    println(reverseList(List2,Nil))
 
   }
 }
